@@ -1,0 +1,38 @@
+# Created by pytest automatically.
+
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+.env/
+.venv/
+env/
+
+# OS files
+.DS_Store
+
+# Test / coverage outputs
+.coverage
+htmlcov/
+pytest_cache/
+
+# IDE / Editor settings
+.vscode/
+.idea/
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Jupyter / data outputs
+*.ipynb_checkpoints
+*.csv
+*.xlsx
+
+# Python packaging
+build/
+dist/
+*.egg-info/
