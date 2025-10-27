@@ -11,15 +11,32 @@ def time_range(start_time, end_time, number_of_intervals=1, gap_between_interval
     return [(ta.strftime("%Y-%m-%d %H:%M:%S"), tb.strftime("%Y-%m-%d %H:%M:%S")) for ta, tb in sec_range]
 
 
-def compute_overlap_time(range1, range2):
-    overlap_time = []
-    for start1, end1 in range1:
-        for start2, end2 in range2:
-            low = max(start1, start2)
-            high = min(end1, end2)
-            if low < high:
-                overlap_time.append((low, high))
-    return overlap_time
+def compute_overlap_time(intervals_a, intervals_b):
+    """Compute all strictly overlapping time intervals between two lists of time ranges."""
+
+    def parse_datetime(dt_str):
+        return datetime.datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S")
+
+    overlaps = []
+
+    for start_a_str, end_a_str in intervals_a:
+        start_a = parse_datetime(start_a_str)
+        end_a = parse_datetime(end_a_str)
+
+        for start_b_str, end_b_str in intervals_b:
+            start_b = parse_datetime(start_b_str)
+            end_b = parse_datetime(end_b_str)
+
+            overlap_start = max(start_a, start_b)
+            overlap_end = min(end_a, end_b)
+
+            if overlap_start < overlap_end:
+                overlaps.append((
+                    overlap_start.strftime("%Y-%m-%d %H:%M:%S"),
+                    overlap_end.strftime("%Y-%m-%d %H:%M:%S"),
+                ))
+
+    return overlaps
 
 if __name__ == "__main__":
     large = time_range("2010-01-12 10:00:00", "2010-01-12 12:00:00")
