@@ -27,3 +27,10 @@ def test_several_intervals():
         ('2022-01-01 11:30:00', '2022-01-01 12:00:00')
     ]
     assert result == expected
+
+def test_starts_at_end():
+    range1 = time_range("2022-01-01 10:00:00", "2022-01-01 11:00:00")
+    range2 = time_range("2022-01-01 11:00:00", "2022-01-01 12:00:00")
+    result = compute_overlap_time(range1, range2)
+    expected = []
+    assert result == expected
