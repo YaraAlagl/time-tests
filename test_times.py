@@ -17,3 +17,13 @@ def test_no_overlap():
     result = compute_overlap_time(range1, range2)
     expected = []
     assert result == expected
+
+def test_several_intervals():
+    range1 = time_range("2022-01-01 10:00:00", "2022-01-01 12:00:00", 2)
+    range2 = time_range("2022-01-01 11:00:00", "2022-01-01 13:00:00", 2)
+    result = compute_overlap_time(range1, range2)
+    expected = [
+        ('2022-01-01 11:00:00', '2022-01-01 11:30:00'),
+        ('2022-01-01 11:30:00', '2022-01-01 12:00:00')
+    ]
+    assert result == expected
