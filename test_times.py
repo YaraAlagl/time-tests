@@ -1,4 +1,7 @@
+import pytest
 from times import time_range, compute_overlap_time
+
+
 
 
 def test_given_input():
@@ -33,3 +36,7 @@ def test_starts_at_end():
     result = compute_overlap_time(range1, range2)
     expected = []
     assert result == expected
+
+def test_ends_before_start():
+     with pytest.raises(ValueError, match="end_time must be after start_time"):
+        time_range("2022-01-01 12:00:00", "2022-01-01 10:00:00")
